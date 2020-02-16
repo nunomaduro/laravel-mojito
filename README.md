@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/nunomaduro/laravel-mojito/master/docs/example.png" alt="Mojito example" height="300">
+    <img src="https://raw.githubusercontent.com/nunomaduro/laravel-mojito/master/docs/example.png" alt="Mojito example" width="80%">
 </p>
 
 <p align="center">
