@@ -11,7 +11,8 @@
 
 ## About Mojito
 
-Mojito was created by, and is maintained by [Nuno Maduro](https://github.com/nunomaduro), and is an view testing library for Laravel.
+Mojito was created by, and is maintained by [Nuno Maduro](https://github.com/nunomaduro), and is lightweight package
+for testing Laravel views in isolation.
 
 ## Installation & Usage
 
