@@ -20,7 +20,7 @@ Mojito was created by, and is maintained by [Nuno Maduro](https://github.com/nun
 Require Mojito using [Composer](https://getcomposer.org):
 
 ```bash
-composer require nunomaduro/laravel-mojito
+composer require nunomaduro/laravel-mojito --dev
 ```
 
 How to use:
