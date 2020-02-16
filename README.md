@@ -43,7 +43,7 @@ class WelcomeTest extends TestCase
 Asserts that the view contains the given text.
 
 ```php
-$this->assertView('button')->toContain('Click me');
+$this->assertView('button')->contains('Click me');
 $this->assertView('button', ['submitText' => 'Cancel'])->contains('Cancel');
 
 $this->assertView('welcome')->in('title')->contains('Laravel');
