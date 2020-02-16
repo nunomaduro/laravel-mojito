@@ -17,7 +17,7 @@ Mojito was created by, and is maintained by [Nuno Maduro](https://github.com/nun
 
 > **Requires [PHP 7.2+](https://php.net/releases/)**
 
-Create your package using [Composer](https://getcomposer.org):
+Require Mojito using [Composer](https://getcomposer.org):
 
 ```bash
 composer require nunomaduro/laravel-mojito
