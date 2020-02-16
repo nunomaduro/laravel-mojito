@@ -18,7 +18,7 @@ final class AssertToHave extends TestCase
     {
         $this->assertView('button')->toHave('prop', 'value');
         $this->assertView('welcome')->toHave('lang', 'en');
-
+        $this->assertView('welcome')->in('head')->first('meta')->toHave('charset','utf-8');
     }
 
     public function testToNotHave(): void

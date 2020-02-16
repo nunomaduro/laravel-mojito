@@ -46,8 +46,9 @@ class WelcomeTest extends TestCase
 
 ### `toContain`
 
+Asserts the current element, or sub-elements, to contain the given raw text.
+
 ```php
-// with partials
 $this->assertView('button')->toContain('Click me');
 $this->assertView('button', ['submitText' => 'Cancel'])->toContain('Cancel');
 
@@ -55,30 +56,32 @@ $this->assertView('welcome')->in('title')->toContain('Laravel');
 $this->assertView('welcome')->in('.content')->toContain('Nova');
 ```
 
-Asserts that the **entire view** contains the given raw text.
-
 ### `toContainSelector`
+
+Asserts the current element, or sub-elements, to contain the given selector.
 
 ```php
 $this->assertView('button')->toContainSelector('button');
 
 $this->assertView('welcome')->toContainSelector('head');
+$this->assertView('welcome')->in('body')->toContainSelector('.content');
 ```
 
-Asserts that the **entire view** contains the given selector.
-
 ### `toHave`
+
+Asserts the current **root element** contain the given attribute value.
 
 ```php
 $this->assertView('button')->toHave('attribute', 'value');
 $this->assertView('button')->toHave('data-attribute', 'value');
 
 $this->assertView('welcome')->toHave('lang', 'en');
+$this->assertView('welcome')->in('head')->first('meta')->toHave('charset','utf-8');
 ```
 
-Asserts that the view **root element** contains the given attribute value.
-
 ### `toHaveClass`
+
+Asserts the current **root element** contain the given class.
 
 ```php
 $this->assertView('button')->toHaveClass('btn');
@@ -86,9 +89,9 @@ $this->assertView('button')->toHaveClass('btn');
 $this->assertView('welcome')->in('.content')->at('div > p', 0)->toHaveClass('title');
 ```
 
-Asserts that the view **root element** contains the given class.
-
 ### `toHaveLink`
+
+Asserts the current **root element** contain the given link.
 
 ```php
 $this->assertView('button')->toHaveLink(route('welcome'));
@@ -97,8 +100,6 @@ $this->assertView('welcome')->in('.links')->first('a')->toHaveLink('https://lara
 $this->assertView('welcome')->in('.links')->at('a', 6)->toHaveLink('https://vapor.laravel.com');
 $this->assertView('welcome')->in('.links')->last('a')->toHaveLink('https://github.com/laravel/laravel');
 ```
-
-Asserts that the view **root element** contains the given link.
 
 ## Contributing
 
