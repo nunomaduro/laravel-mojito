@@ -14,16 +14,16 @@ final class AssertIn extends TestCase
 {
     use InteractsWithViews;
 
-    public function testToContainIn(): void
+    public function testIn(): void
     {
-        $this->assertView('alert')->in('button')->toHaveClass('btn');
-        $this->assertView('welcome')->in('title')->toContain('Laravel');
+        $this->assertView('alert')->in('button')->hasClass('btn');
+        $this->assertView('welcome')->in('title')->contains('Laravel');
     }
 
-    public function testNotToContainIn(): void
+    public function testDoNotIn(): void
     {
         $this->expectException(AssertionFailedError::class);
 
-        $this->assertView('alert')->in('something-not-there')->toHaveClass('btn');
+        $this->assertView('alert')->in('something-not-there')->hasClass('btn');
     }
 }

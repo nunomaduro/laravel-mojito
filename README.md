@@ -34,71 +34,65 @@ class WelcomeTest extends TestCase
     public function testDisplaysLaravel(): void
     {
         // Then, get started with Mojito using the `assertView` method.
-        $this->assertView('welcome')->toContain('Laravel');
+        $this->assertView('welcome')->contains('Laravel');
     }
 }
 ```
+### `contains`
 
-### `toHave` vs `toContain`
-
-- `toHave` concerns always the root element of the view.
-- `toContain` concerns the entire view, including sub elements
-
-### `toContain`
-
-Asserts the current element, or sub-elements, to contain the given raw text.
+Asserts that the view contains the given text.
 
 ```php
 $this->assertView('button')->toContain('Click me');
-$this->assertView('button', ['submitText' => 'Cancel'])->toContain('Cancel');
+$this->assertView('button', ['submitText' => 'Cancel'])->contains('Cancel');
 
-$this->assertView('welcome')->in('title')->toContain('Laravel');
-$this->assertView('welcome')->in('.content')->toContain('Nova');
+$this->assertView('welcome')->in('title')->contains('Laravel');
+$this->assertView('welcome')->in('.content')->contains('Nova');
 ```
 
-### `toContainSelector`
+### `has`
 
-Asserts the current element, or sub-elements, to contain the given selector.
+Asserts that the view has the given selector.
 
 ```php
-$this->assertView('button')->toContainSelector('button');
+$this->assertView('button')->has('button');
 
-$this->assertView('welcome')->toContainSelector('head');
-$this->assertView('welcome')->in('body')->toContainSelector('.content');
+$this->assertView('welcome')->has('head');
+$this->assertView('welcome')->in('body')->has('.content');
 ```
 
-### `toHave`
+### `hasAttribute`
 
-Asserts the current **root element** contain the given attribute value.
+Asserts that the view **root element** has the given attribute value.
 
 ```php
-$this->assertView('button')->toHave('attribute', 'value');
-$this->assertView('button')->toHave('data-attribute', 'value');
+$this->assertView('button')->hasAttribute('attribute', 'value');
+$this->assertView('button')->hasAttribute('data-attribute', 'value');
 
-$this->assertView('welcome')->toHave('lang', 'en');
-$this->assertView('welcome')->in('head')->first('meta')->toHave('charset','utf-8');
+$this->assertView('welcome')->hasAttribute('lang', 'en');
+$this->assertView('welcome')->in('head')->first('meta')->hasAttribute('charset','utf-8');
 ```
 
-### `toHaveClass`
+### `hasClass`
 
-Asserts the current **root element** contain the given class.
+Asserts that the view has an element with the given class.
 
 ```php
-$this->assertView('button')->toHaveClass('btn');
+$this->assertView('button')->hasClass('btn');
 
-$this->assertView('welcome')->in('.content')->at('div > p', 0)->toHaveClass('title');
+$this->assertView('welcome')->in('.content')->at('div > p', 0)->hasClass('title');
 ```
 
-### `toHaveLink`
+### `hasLink`
 
-Asserts the current **root element** contain the given link.
+Asserts that the view has an element with the given link.
 
 ```php
-$this->assertView('button')->toHaveLink(route('welcome'));
+$this->assertView('button')->hasLink(route('welcome'));
 
-$this->assertView('welcome')->in('.links')->first('a')->toHaveLink('https://laravel.com/docs');
-$this->assertView('welcome')->in('.links')->at('a', 6)->toHaveLink('https://vapor.laravel.com');
-$this->assertView('welcome')->in('.links')->last('a')->toHaveLink('https://github.com/laravel/laravel');
+$this->assertView('welcome')->in('.links')->first('a')->hasLink('https://laravel.com/docs');
+$this->assertView('welcome')->in('.links')->at('a', 6)->hasLink('https://vapor.laravel.com');
+$this->assertView('welcome')->in('.links')->last('a')->hasLink('https://github.com/laravel/laravel');
 ```
 
 ## Contributing

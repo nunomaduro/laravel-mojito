@@ -36,7 +36,7 @@ final class TestView
      */
     public function in(string $selector): TestView
     {
-        $this->toContainSelector($selector);
+        $this->has($selector);
 
         return new self($this->crawler->children()->filter($selector)->outerHtml());
     }
@@ -76,7 +76,7 @@ final class TestView
     /**
      * Asserts that the view contains the given text.
      */
-    public function toContain(string $text): TestView
+    public function contains(string $text): TestView
     {
         self::assert(function () use ($text) {
             Assert::assertStringContainsString((string) $text, $this->crawler->outerHtml());
@@ -86,49 +86,41 @@ final class TestView
     }
 
     /**
-     * Asserts that the view root element contains the given attribute value.
+     * Asserts that the view, at the **root element**, contains the given attribute value.
      */
-    public function toHave(string $attribute, string $value): TestView
+    public function hasAttribute(string $attribute, string $value): TestView
     {
         self::assert(function () use ($attribute, $value) {
-
-
             Assert::assertSame($value, $this->getRootElement()->getAttribute($attribute));
-        }, "Failed asserting that the $attribute `$value` exists within the root element of %s.");
+        }, "Failed asserting that the $attribute `$value` exists within %s.");
 
         return $this;
     }
 
     /**
-     * Asserts that the view root element contains the given class.
+     * Asserts that the view contains an element with the given class.
      */
-    public function toHaveClass(string $class): TestView
+    public function hasClass(string $class): TestView
     {
-        $classes = explode(' ', $this->getRootElement()->getAttribute('class'));
-
-        self::assert(function () use ($class, $classes) {
-            Assert::assertContains($class, $classes);
-        }, "Failed asserting that the class `$class` exists within the root element of %s.");
-
-        return $this;
+        return $this->has(".$class");
     }
 
     /**
-     * Asserts that the view root element contains the given link.
+     * Asserts that the view contains an element with the given link.
      */
-    public function toHaveLink(string $link): TestView
+    public function hasLink(string $link): TestView
     {
-        return $this->toHave('href', $link);
+        return $this->has("a[href='$link']");
     }
 
     /**
      * Asserts that the view contains the given selector.
      */
-    public function toContainSelector(string $selector): TestView
+    public function has(string $selector): TestView
     {
         self::assert(function () use ($selector) {
             Assert::assertThat($this->crawler, new CrawlerSelectorExists($selector));
-        }, "Failed asserting that the selector `$selector` exists within %s.");
+        }, "Failed asserting that `$selector` exists within %s.");
 
         return $this;
     }
