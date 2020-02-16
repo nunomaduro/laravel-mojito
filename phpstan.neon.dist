@@ -6,3 +6,5 @@ parameters:
     ignoreErrors:
         - '#Call to an undefined method DOMNode::getAttribute\(\).#'
     checkMissingIterableValueType: false
+    excludes_analyse:
+        - "src/MojitoServiceProvider.php"

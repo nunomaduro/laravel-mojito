@@ -53,5 +53,12 @@
             "@test:types",
             "@test:unit"
         ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NunoMaduro\\LaravelMojito\\MojitoServiceProvider"
+            ]
+        }
     }
 }

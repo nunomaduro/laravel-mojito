@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NunoMaduro\LaravelMojito;
 
 trait InteractsWithViews
@@ -9,6 +11,6 @@ trait InteractsWithViews
      */
     protected function assertView(string $view, array $data = [], array $mergeData = []): TestView
     {
-        return new TestView(view($view, $data, $mergeData));
+        return new TestView(view($view, $data, $mergeData)->render());
     }
 }

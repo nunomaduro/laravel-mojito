@@ -31,13 +31,30 @@ class WelcomeTest extends TestCase
     // First, add the `InteractsWithViews` trait to your test case class.
     use InteractsWithViews; 
 
-    public function testDisplaysLaravel(): void
+    public function testDisplaysLaravel()
     {
         // Then, get started with Mojito using the `assertView` method.
         $this->assertView('welcome')->contains('Laravel');
     }
 }
 ```
+
+Optionally, you can also perform view testing from your HTTP Tests:
+
+```php
+class WelcomeTest extends TestCase
+{
+    public function testDisplaysLaravel()
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+    
+        $response->assertView()->contains('Laravel');
+    }
+}
+```
+
 ### `contains`
 
 Asserts that the view contains the given text.
