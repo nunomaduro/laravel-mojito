@@ -1,0 +1,57 @@
+{
+    "name": "nunomaduro/laravel-mojito",
+    "description": "A lightweight package for testing Laravel views.",
+    "keywords": [
+        "php",
+        "laravel",
+        "package",
+        "testing"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nuno Maduro",
+            "email": "enunomaduro@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "symfony/css-selector": "^5.0",
+        "symfony/dom-crawler": "^5.0"
+    },
+    "require-dev": {
+        "illuminate/contracts": "^6.0|^7.0",
+        "illuminate/support": "^6.0|^7.0",
+        "illuminate/view": "^6.0|^7.0",
+        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-strict-rules": "^0.12",
+        "phpunit/phpunit": "^8.0|^9.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        },
+        "files": [
+            "tests/bootstrap.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "NunoMaduro\\LaravelMojito\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist"
+    },
+    "scripts": {
+        "test:types": "phpstan analyse --ansi",
+        "test:unit": "phpunit --colors=always",
+        "test": [
+            "@test:types",
+            "@test:unit"
+        ]
+    }
+}
