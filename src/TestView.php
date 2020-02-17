@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace NunoMaduro\LaravelMojito;
 
 use DOMNode;
+use Illuminate\Support\Traits\Macroable;
 use NunoMaduro\LaravelMojito\Exceptions\RootElementNotFound;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\AssertionFailedError;
@@ -16,6 +17,8 @@ use Symfony\Component\DomCrawler\Test\Constraint\CrawlerSelectorExists;
  */
 final class TestView
 {
+    use Macroable;
+
     /**
      * @var \Symfony\Component\DomCrawler\Crawler
      */
