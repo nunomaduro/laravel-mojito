@@ -20,6 +20,15 @@ final class AssertContains extends TestCase
         $this->assertView('welcome')->contains('<title>Laravel</title>');
     }
 
+    public function testWeirdContains(): void
+    {
+        $this->assertView('weird')
+            ->contains('BEFORE')
+            ->contains('AFTER')
+            ->contains('WIDGETBEF')
+            ->contains('WIDGETAFT');
+    }
+
     public function testDoNotContains(): void
     {
         $this->expectException(AssertionFailedError::class);
