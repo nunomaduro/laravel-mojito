@@ -14,7 +14,7 @@ final class MojitoServiceProvider extends ServiceProvider
     public function register(): void
     {
         $macro = function () {
-            return new TestView($this->getContent());
+            return new ViewAssertion($this->getContent());
         };
 
         if (class_exists(\Illuminate\Testing\TestResponse::class)) {

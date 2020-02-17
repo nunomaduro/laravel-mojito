@@ -12,10 +12,7 @@ use PHPUnit\Framework\AssertionFailedError;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\DomCrawler\Test\Constraint\CrawlerSelectorExists;
 
-/**
- * @internal
- */
-final class TestView
+final class ViewAssertion
 {
     use Macroable;
 
@@ -25,7 +22,7 @@ final class TestView
     private $crawler;
 
     /**
-     * Create a new test view instance.
+     * Create a new view assertion instance.
      */
     public function __construct(string $html)
     {
@@ -37,9 +34,9 @@ final class TestView
     }
 
     /**
-     * Creates a new test view with the given selector.
+     * Creates a new view assertion with the given selector.
      */
-    public function in(string $selector): TestView
+    public function in(string $selector): ViewAssertion
     {
         $this->has($selector);
 
@@ -47,9 +44,9 @@ final class TestView
     }
 
     /**
-     * Creates a new test view with the given selector at the given position.
+     * Creates a new view assertion with the given selector at the given position.
      */
-    public function at(string $selector, int $position): TestView
+    public function at(string $selector, int $position): ViewAssertion
     {
         $node = $this->crawler->filter($selector)->eq($position);
 
@@ -57,9 +54,9 @@ final class TestView
     }
 
     /**
-     * Creates a new test view with the given selector at the first position.
+     * Creates a new view assertion with the given selector at the first position.
      */
-    public function first(string $selector): TestView
+    public function first(string $selector): ViewAssertion
     {
         $node = $this->crawler->filter($selector)->first();
 
@@ -67,11 +64,11 @@ final class TestView
     }
 
     /**
-     * Creates a new test view with the given selector at the last position.
+     * Creates a new view assertion with the given selector at the last position.
      *
-     * @return TestView
+     * @return ViewAssertion
      */
-    public function last(string $selector): TestView
+    public function last(string $selector): ViewAssertion
     {
         $node = $this->crawler->filter($selector)->last();
 
@@ -81,7 +78,7 @@ final class TestView
     /**
      * Asserts that the view contains the given text.
      */
-    public function contains(string $text): TestView
+    public function contains(string $text): ViewAssertion
     {
         self::assert(function () use ($text) {
             Assert::assertStringContainsString((string) $text, $this->crawler->outerHtml());
@@ -93,7 +90,7 @@ final class TestView
     /**
      * Asserts that the view, at the **root element**, contains the given attribute value.
      */
-    public function hasAttribute(string $attribute, string $value): TestView
+    public function hasAttribute(string $attribute, string $value): ViewAssertion
     {
         self::assert(function () use ($attribute, $value) {
             Assert::assertSame($value, $this->getRootElement()->getAttribute($attribute));
@@ -105,7 +102,7 @@ final class TestView
     /**
      * Asserts that the view contains an element with the given class.
      */
-    public function hasClass(string $class): TestView
+    public function hasClass(string $class): ViewAssertion
     {
         return $this->has(".$class");
     }
@@ -113,7 +110,7 @@ final class TestView
     /**
      * Asserts that the view contains an element with the given link.
      */
-    public function hasLink(string $link): TestView
+    public function hasLink(string $link): ViewAssertion
     {
         return $this->has("a[href='$link']");
     }
@@ -121,7 +118,7 @@ final class TestView
     /**
      * Asserts that the view contains the given selector.
      */
-    public function has(string $selector): TestView
+    public function has(string $selector): ViewAssertion
     {
         self::assert(function () use ($selector) {
             Assert::assertThat($this->crawler, new CrawlerSelectorExists($selector));

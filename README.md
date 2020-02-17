@@ -113,6 +113,23 @@ $this->assertView('welcome')->in('.links')->at('a', 6)->hasLink('https://vapor.l
 $this->assertView('welcome')->in('.links')->last('a')->hasLink('https://github.com/laravel/laravel');
 ```
 
+### Macroable
+
+Fell free to add your own macros to the `ViewAssertion::class`.
+
+```php
+use NunoMaduro\LaravelMojito\ViewAssertion;
+
+// Within a service provider:
+ViewAssertion::macro('hasCharset', function (string $charset) {
+    return $this->in('head')->first('meta')->hasAttribute('charset', $charset);
+});
+
+// In your tests:
+$this->assertView('welcome')->hasCharset('utf-8');
+```
+
+
 ## Contributing
 
 Thank you for considering to contribute to Mojito. All the contribution guidelines are mentioned [here](CONTRIBUTING.md).

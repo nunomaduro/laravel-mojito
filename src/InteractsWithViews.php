@@ -9,8 +9,8 @@ trait InteractsWithViews
     /**
      * Create a new view test case.
      */
-    protected function assertView(string $view, array $data = [], array $mergeData = []): TestView
+    protected function assertView(string $view, array $data = [], array $mergeData = []): ViewAssertion
     {
-        return new TestView(view($view, $data, $mergeData)->render());
+        return new ViewAssertion(view($view, $data, $mergeData)->render());
     }
 }

@@ -5,8 +5,8 @@ parameters:
         - tests
     ignoreErrors:
         - '#Call to an undefined method DOMNode::getAttribute\(\).#'
-        - '#Call to an undefined method Tests\\Macroable::in\(\).#'
-        - '#Call to an undefined method NunoMaduro\\LaravelMojito\\TestView::hasCharset\(\).#'
+        - '#Call to an undefined method Tests\\IsMacroable::in\(\).#'
+        - '#Call to an undefined method NunoMaduro\\LaravelMojito\\ViewAssertion::hasCharset\(\).#'
     checkMissingIterableValueType: false
     excludes_analyse:
         - "src/MojitoServiceProvider.php"
