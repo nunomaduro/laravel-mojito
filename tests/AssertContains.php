@@ -26,4 +26,20 @@ final class AssertContains extends TestCase
 
         $this->assertView('button')->contains('Do not click me');
     }
+
+    public function testContainsInViewWithMultipleRootNodes(): void
+    {
+        $this->assertView('Multiple')
+            ->contains('FIRST_PARAGRAPH')
+            ->contains('SECOND_PARAGRAPH');
+    }
+
+    public function testContainsInViewWithMAlformedHtml(): void
+    {
+        $this->assertView('malformed')
+            ->contains('BEFORE')
+            ->contains('AFTER')
+            ->contains('WIDGETBEF')
+            ->contains('WIDGETAFT');
+    }
 }
