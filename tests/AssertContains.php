@@ -29,7 +29,7 @@ final class AssertContains extends TestCase
 
     public function testContainsInViewWithMultipleRootNodes(): void
     {
-        $this->assertView('Multiple')
+        $this->assertView('multiple')
             ->contains('FIRST_PARAGRAPH')
             ->contains('SECOND_PARAGRAPH');
     }
