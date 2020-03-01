@@ -20,10 +20,26 @@ final class AssertContains extends TestCase
         $this->assertView('welcome')->contains('<title>Laravel</title>');
     }
 
-    public function testDoNotContains(): void
+    public function testDoesNotContain(): void
     {
         $this->expectException(AssertionFailedError::class);
 
         $this->assertView('button')->contains('Do not click me');
+    }
+
+    public function testContainsInViewWithMultipleRootNodes(): void
+    {
+        $this->assertView('multiple')
+            ->contains('FIRST_PARAGRAPH')
+            ->contains('SECOND_PARAGRAPH');
+    }
+
+    public function testContainsInViewWithMAlformedHtml(): void
+    {
+        $this->assertView('malformed')
+            ->contains('BEFORE')
+            ->contains('AFTER')
+            ->contains('WIDGETBEF')
+            ->contains('WIDGETAFT');
     }
 }

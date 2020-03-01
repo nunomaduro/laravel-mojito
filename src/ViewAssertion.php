@@ -22,12 +22,22 @@ final class ViewAssertion
     private $crawler;
 
     /**
+     * @var string
+     */
+    private $html;
+
+    /**
      * Create a new view assertion instance.
      */
     public function __construct(string $html)
     {
-        $this->crawler = new Crawler($html);
+        $this->html = $html;
 
+        $this->crawler = new Crawler($this->html);
+
+        // If the view is not a full HTML document, the Crawler will try to fix it
+        // adding an html and a body tag, so we need to crawl back down
+        // to the relevant portion of HTML
         if (strpos($html, '</html>') === false) {
             $this->crawler = $this->crawler->children()->children();
         }
@@ -81,7 +91,7 @@ final class ViewAssertion
     public function contains(string $text): ViewAssertion
     {
         self::assert(function () use ($text) {
-            Assert::assertStringContainsString((string) $text, $this->crawler->outerHtml());
+            Assert::assertStringContainsString((string) $text, $this->html);
         }, "Failed asserting that the text `$text` exists within %s.");
 
         return $this;
@@ -151,7 +161,7 @@ final class ViewAssertion
         try {
             $assertion();
         } catch (AssertionFailedError $e) {
-            throw new AssertionFailedError(sprintf($message, sprintf("`%s`", $this->crawler->outerHtml())));
+            throw new AssertionFailedError(sprintf($message, sprintf("`%s`", $this->html)));
         }
     }
 }
