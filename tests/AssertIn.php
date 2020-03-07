@@ -17,6 +17,7 @@ final class AssertIn extends TestCase
     {
         $this->assertView('alert')->in('button')->hasClass('btn');
         $this->assertView('welcome')->in('title')->contains('Laravel');
+        $this->assertView('welcome')->in('.links a')->contains('Laracast');
     }
 
     public function testDoNotIn(): void
