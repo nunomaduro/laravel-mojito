@@ -50,7 +50,11 @@ final class ViewAssertion
     {
         $this->has($selector);
 
-        return new self($this->crawler->children()->filter($selector)->outerHtml());
+        $filteredHtml = $this->crawler->children()->filter($selector)->each(function ($node) {
+            return $node->outerHtml();
+        });
+
+        return new self(collect($filteredHtml)->implode(''));
     }
 
     /**

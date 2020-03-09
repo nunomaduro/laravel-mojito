@@ -18,6 +18,7 @@ final class AssertHas extends TestCase
     {
         $this->assertView('alert')->has('button');
         $this->assertView('welcome')->has('head');
+        $this->assertView('welcome')->in('body')->has('.content');
     }
 
     public function testDoNotHas(): void
