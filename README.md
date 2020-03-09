@@ -11,8 +11,7 @@
 
 ## About Mojito
 
-Mojito was created by, and is maintained by [Nuno Maduro](https://github.com/nunomaduro), and is lightweight package
-for testing Laravel views in isolation.
+Mojito was created by, and is maintained by [Nuno Maduro](https://github.com/nunomaduro), and is a lightweight package for testing Laravel views in isolation.
 
 ## Installation & Usage
 
@@ -50,7 +49,7 @@ class WelcomeTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
-    
+
         $response->assertView()->contains('Laravel');
     }
 }
@@ -66,6 +65,14 @@ $this->assertView('button', ['submitText' => 'Cancel'])->contains('Cancel');
 
 $this->assertView('welcome')->in('title')->contains('Laravel');
 $this->assertView('welcome')->in('.content')->contains('Nova');
+```
+
+### `first`
+
+Filters the view and returns only the first element matching the selector.
+
+```php
+$this->assertView('welcome')->first('.links a')->contains('Docs');
 ```
 
 ### `has`
@@ -111,6 +118,22 @@ $this->assertView('button')->hasLink(route('welcome'));
 $this->assertView('welcome')->in('.links')->first('a')->hasLink('https://laravel.com/docs');
 $this->assertView('welcome')->in('.links')->at('a', 6)->hasLink('https://vapor.laravel.com');
 $this->assertView('welcome')->in('.links')->last('a')->hasLink('https://github.com/laravel/laravel');
+```
+
+### `in`
+
+Filters the view and returns only the elements matching the selector.
+
+```php
+$this->assertView('welcome')->in('.links a')->contains('Laracast');
+```
+
+### `last`
+
+Filters the view and returns only the last element matching the selector.
+
+```php
+$this->assertView('welcome')->last('.links a')->contains('GitHub');
 ```
 
 ### Macroable

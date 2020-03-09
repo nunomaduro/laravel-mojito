@@ -17,6 +17,7 @@ final class AssertContains extends TestCase
     public function testContains(): void
     {
         $this->assertView('button')->contains('Click me');
+        $this->assertView('button', ['submitText' => 'Cancel'])->contains('Cancel');
         $this->assertView('welcome')->contains('<title>Laravel</title>');
     }
 
