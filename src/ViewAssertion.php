@@ -32,9 +32,15 @@ final class ViewAssertion
     public function __construct(string $html)
     {
         $this->html = $html;
+<<<<<<< HEAD
 
         $this->crawler = new Crawler($this->html);
 
+=======
+
+        $this->crawler = new Crawler($this->html);
+
+>>>>>>> 22a9c84307f97776f42418149c9226db3d99cfa1
         // If the view is not a full HTML document, the Crawler will try to fix it
         // adding an html and a body tag, so we need to crawl back down
         // to the relevant portion of HTML
