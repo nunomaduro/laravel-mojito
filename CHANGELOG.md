@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.2.4
+### Fixes
+- `in()` returns all matching items rather than just the first match ([#11](https://github.com/nunomaduro/laravel-mojito/pull/11))
+
 ## 0.2.3
 ### Fixes
 - Assertions with views in multiple nodes ([#8](https://github.com/nunomaduro/laravel-mojito/pull/8))
