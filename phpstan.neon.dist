@@ -4,9 +4,12 @@ parameters:
         - src
         - tests
     ignoreErrors:
+        - '#Access to an undefined property Illuminate\\Contracts\\Mail\\Mailable::\$[a-zA-Z].#'
         - '#Call to an undefined method DOMNode::getAttribute\(\).#'
         - '#Call to an undefined method Tests\\IsMacroable::in\(\).#'
         - '#Call to an undefined method NunoMaduro\\LaravelMojito\\ViewAssertion::hasCharset\(\).#'
+        - '#Function resolve.*.#'
     checkMissingIterableValueType: false
     excludes_analyse:
         - "src/MojitoServiceProvider.php"
+        - "tests/FakeViewFactory.php"
