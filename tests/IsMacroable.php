@@ -29,7 +29,7 @@ final class IsMacroable extends TestCase
     {
         $this->expectException(AssertionFailedError::class);
         $this->expectExceptionMessage(
-            'Failed asserting that the charset `not-valid` exists within `<meta charset="utf-8">`'
+            'Failed asserting that the charset `not-valid` exists within `<meta charset="utf-8">'
         );
 
         $this->assertView('welcome')->hasCharset('not-valid');

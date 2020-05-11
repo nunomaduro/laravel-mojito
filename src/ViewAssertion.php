@@ -96,7 +96,7 @@ final class ViewAssertion
     {
         self::assert(function () use ($text) {
             Assert::assertStringContainsString((string) $text, $this->html);
-        }, "Failed asserting that the text `$text` exists within %s.");
+        }, "Failed asserting that the text `{$text}` exists within `{$this->html}`.");
 
         return $this;
     }
@@ -108,7 +108,7 @@ final class ViewAssertion
     {
         self::assert(function () use ($attribute, $value) {
             Assert::assertSame($value, $this->getRootElement()->getAttribute($attribute));
-        }, "Failed asserting that the $attribute `$value` exists within %s.");
+        }, "Failed asserting that the {$attribute} `{$value}` exists within `{$this->html}`.");
 
         return $this;
     }
@@ -126,7 +126,7 @@ final class ViewAssertion
      */
     public function hasLink(string $link): ViewAssertion
     {
-        return $this->has("a[href='$link']");
+        return $this->has("a[href='{$link}']");
     }
 
     /**
@@ -136,7 +136,7 @@ final class ViewAssertion
     {
         self::assert(function () use ($selector) {
             Assert::assertThat($this->crawler, new CrawlerSelectorExists($selector));
-        }, "Failed asserting that `$selector` exists within %s.");
+        }, "Failed asserting that `{$selector}` exists within `{$this->html}`.");
 
         return $this;
     }
@@ -165,7 +165,7 @@ final class ViewAssertion
         try {
             $assertion();
         } catch (AssertionFailedError $e) {
-            throw new AssertionFailedError(sprintf($message, sprintf("`%s`", $this->html)));
+            throw new AssertionFailedError($message);
         }
     }
 }

@@ -22,7 +22,8 @@ final class AssertLast extends TestCase
     {
         $this->expectException(AssertionFailedError::class);
         $this->expectExceptionMessage(
-            'Failed asserting that the text `Laracase` exists within `<a href="https://github.com/laravel/laravel">GitHub</a>`.'
+            'Failed asserting that the text `Laracase` exists within '
+            .'`<a href="https://github.com/laravel/laravel">GitHub</a>`.'
         );
 
         $this->assertView('welcome')->last('.links a')->contains('Laracase');
