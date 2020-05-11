@@ -26,6 +26,8 @@ final class FakeView extends View
 
     public function render(callable $callback = null): string
     {
-        return (string) file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . $this->name . '.html');
+        return (string) file_get_contents(
+            __DIR__ . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . $this->name . '.html'
+        );
     }
 }
