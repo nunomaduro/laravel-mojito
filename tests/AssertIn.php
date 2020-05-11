@@ -22,7 +22,11 @@ final class AssertIn extends TestCase
 
     public function testNotIn(): void
     {
+        $html = file_get_contents(__DIR__.'/fixtures/alert.html');
         $this->expectException(AssertionFailedError::class);
+        $this->expectExceptionMessage(
+            "Failed asserting that `something-not-there` exists within `{$html}`"
+        );
 
         $this->assertView('alert')->in('something-not-there')->hasClass('btn');
     }

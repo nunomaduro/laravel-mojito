@@ -21,6 +21,9 @@ final class AssertFirst extends TestCase
     public function testNotFirst(): void
     {
         $this->expectException(AssertionFailedError::class);
+        $this->expectExceptionMessage(
+            'Failed asserting that the text `Laracase` exists within `<a href="https://laravel.com/docs">Docs</a>`.'
+        );
 
         $this->assertView('welcome')->first('.links a')->contains('Laracase');
     }
