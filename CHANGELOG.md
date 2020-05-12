@@ -6,9 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 ### Fixes
-- Fixed bug when assertions were using string containing the percentage symbol ([#15](https://github.com/nunomaduro/laravel-mojito/pull/11))
-### Changed
-- Marked internal ViewAssertion::assert as deprecated.
+- Fixed bug when assertions were using string containing the percentage symbol ([#16](https://github.com/nunomaduro/laravel-mojito/pull/16))
+
+### Deprecated
+- ViewAssertion::assert()
 
 ## 0.2.4
 ### Fixes
