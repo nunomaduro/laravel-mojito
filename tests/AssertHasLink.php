@@ -24,7 +24,11 @@ final class AssertHasLink extends TestCase
 
     public function testDoNotLink(): void
     {
+        $html = file_get_contents(__DIR__.'/fixtures/button.html');
         $this->expectException(AssertionFailedError::class);
+        $this->expectExceptionMessage(
+            "Failed asserting that `a[href='https://link-that-is-not-there.com']` exists within `{$html}`"
+        );
 
         $this->assertView('button')->hasLink('https://link-that-is-not-there.com');
     }

@@ -23,7 +23,11 @@ final class AssertHas extends TestCase
 
     public function testDoNotHas(): void
     {
+        $html = file_get_contents(__DIR__.'/fixtures/alert.html');
         $this->expectException(AssertionFailedError::class);
+        $this->expectExceptionMessage(
+            "Failed asserting that `form` exists within `{$html}`"
+        );
 
         $this->assertView('alert')->has('form');
     }

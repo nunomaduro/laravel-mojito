@@ -22,7 +22,11 @@ final class AssertHasClass extends TestCase
 
     public function testDoNotHasClass(): void
     {
+        $html = file_get_contents(__DIR__.'/fixtures/button.html');
         $this->expectException(AssertionFailedError::class);
+        $this->expectExceptionMessage(
+            "Failed asserting that `.btn-danger` exists within `{$html}`"
+        );
 
         $this->assertView('button')->hasClass('btn-danger');
     }

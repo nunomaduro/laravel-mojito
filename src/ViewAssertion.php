@@ -94,9 +94,11 @@ final class ViewAssertion
      */
     public function contains(string $text): ViewAssertion
     {
-        self::assert(function () use ($text) {
-            Assert::assertStringContainsString((string) $text, $this->html);
-        }, "Failed asserting that the text `$text` exists within %s.");
+        Assert::assertStringContainsString(
+            (string) $text,
+            $this->html,
+            "Failed asserting that the text `{$text}` exists within `{$this->html}`."
+        );
 
         return $this;
     }
@@ -106,9 +108,11 @@ final class ViewAssertion
      */
     public function hasAttribute(string $attribute, string $value): ViewAssertion
     {
-        self::assert(function () use ($attribute, $value) {
-            Assert::assertSame($value, $this->getRootElement()->getAttribute($attribute));
-        }, "Failed asserting that the $attribute `$value` exists within %s.");
+        Assert::assertSame(
+            $value,
+            $this->getRootElement()->getAttribute($attribute),
+            "Failed asserting that the {$attribute} `{$value}` exists within `{$this->html}`."
+        );
 
         return $this;
     }
@@ -126,7 +130,7 @@ final class ViewAssertion
      */
     public function hasLink(string $link): ViewAssertion
     {
-        return $this->has("a[href='$link']");
+        return $this->has("a[href='{$link}']");
     }
 
     /**
@@ -134,9 +138,11 @@ final class ViewAssertion
      */
     public function has(string $selector): ViewAssertion
     {
-        self::assert(function () use ($selector) {
-            Assert::assertThat($this->crawler, new CrawlerSelectorExists($selector));
-        }, "Failed asserting that `$selector` exists within %s.");
+        Assert::assertThat(
+            $this->crawler,
+            new CrawlerSelectorExists($selector),
+            "Failed asserting that `{$selector}` exists within `{$this->html}`."
+        );
 
         return $this;
     }
@@ -159,6 +165,9 @@ final class ViewAssertion
 
     /**
      * Runs the given assertion, and fires the given error message on error.
+     *
+     * @deprecated it will be removed in the next major version since redundant.
+     *             we are keeping it for now since, despite being private, it can be used by macros
      */
     private function assert(callable $assertion, string $message): void
     {
