@@ -22,6 +22,8 @@
     "require-dev": {
         "illuminate/contracts": "^6.0|^7.0",
         "illuminate/support": "^6.0|^7.0",
+        "illuminate/mail": "^6.0|^7.0",
+        "illuminate/notifications": "^6.0|^7.0",
         "illuminate/view": "^6.0|^7.0",
         "phpstan/phpstan": "^0.12.11",
         "phpstan/phpstan-strict-rules": "^0.12",

@@ -5,6 +5,11 @@ declare(strict_types=1);
 namespace NunoMaduro\LaravelMojito;
 
 use DOMNode;
+use Illuminate\Contracts\Mail\Mailable;
+use Illuminate\Contracts\View\Factory as ViewFactory;
+use Illuminate\Mail\Markdown;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Traits\Macroable;
 use NunoMaduro\LaravelMojito\Exceptions\RootElementNotFound;
 use PHPUnit\Framework\Assert;
@@ -25,6 +30,72 @@ final class ViewAssertion
      * @var string
      */
     private $html;
+
+    /**
+     * Makes a callable that can be used with Mail and Notification assertions
+     */
+    public static function make(callable $callable) : callable
+    {
+        return function () use ($callable) : bool {
+            $args = func_get_args();
+
+            if (($args[0] ?? false) && $args[0] instanceof Mailable) {
+                return $callable(
+                    new self(
+                        resolve(
+                            ViewFactory::class
+                        )
+                            ->make($args[0]->view, $args[0]->viewData)
+                            ->render()
+                    )
+                );
+            } elseif (($args[0] ?? false) && $args[0] instanceof Notification) {
+                list($notification, $channel, $notifiable, $locale) = $args;
+
+                $rendered = null;
+
+                $mail =
+                    method_exists($notification, 'toMail') ?
+                        $notification->toMail($notifiable) :
+                        null;
+                if ($mail instanceof Mailable) {
+                    $rendered = new self(
+                        resolve(
+                            ViewFactory::class
+                        )
+                            ->make($mail->view, $mail->viewData)
+                            ->render()
+                    );
+                } elseif ($mail instanceof MailMessage) {
+                    if ($mail->view) {
+                        $rendered = new self(
+                            resolve(
+                                ViewFactory::class
+                            )
+                                ->make($mail->view, $mail->viewData)
+                                ->render()
+                        );
+                    } else {
+                        $rendered = new self(
+                            (string) resolve(Markdown::class)
+                                ->render($mail->markdown, $mail->data())
+                        );
+                    }
+                } else {
+                    return false;
+                }
+
+                return $callable(
+                    $rendered,
+                    $channel,
+                    $notifiable,
+                    $locale
+                );
+            }
+
+            return false;
+        };
+    }
 
     /**
      * Create a new view assertion instance.

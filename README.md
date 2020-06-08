@@ -136,6 +136,41 @@ Filters the view and returns only the last element matching the selector.
 $this->assertView('welcome')->last('.links a')->contains('GitHub');
 ```
 
+### Assert Email Views
+
+You can also use the ViewAssertion class to generate a callable to use with Mail and Notification
+assertions making it easier to check that the contents of any emails your application delivers.
+
+For Mail assertions:
+
+```php
+Mail::fake();
+
+(new ExampleMailable)->send();
+
+Mail::assertSent(ExampleMailable::class, ViewAssertion::make(function (ViewAssertion $assertion) {
+    $assertion->contains('Hello World');
+
+    return true;
+}));
+```
+
+For Notification assertions:
+
+```php
+Notifications::fake();
+
+$user->notify(new Example());
+
+Notification::assertSentTo($user, ViewAssertion::make(
+    function (ViewAssertion $assertion, $channel, $notifiable, $locale) {
+        $assertion->contains('Hello World');
+    
+        return true;
+    }
+)); 
+```
+
 ### Macroable
 
 Fell free to add your own macros to the `ViewAssertion::class`.
