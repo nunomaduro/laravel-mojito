@@ -15,9 +15,9 @@
         }
     ],
     "require": {
-        "php": "^7.2.5",
-        "symfony/css-selector": "^5.0",
-        "symfony/dom-crawler": "^5.0"
+        "php": "^7.2.5|^8.0",
+        "symfony/css-selector": "^5.1",
+        "symfony/dom-crawler": "^5.1.8"
     },
     "require-dev": {
         "illuminate/contracts": "^6.0|^7.0|^8.0",
