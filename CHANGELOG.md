@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## 0.2.6
+### Added
+- Add support for Laravel 8 ([#19](https://github.com/nunomaduro/laravel-mojito/pull/19))
+- Add support for PHP 8 ([#20](https://github.com/nunomaduro/laravel-mojito/pull/20))
+
 ## 0.2.5
 ### Fixes
 - Fixed bug when assertions were using string containing the percentage symbol ([#16](https://github.com/nunomaduro/laravel-mojito/pull/16))
