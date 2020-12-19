@@ -148,6 +148,23 @@ final class ViewAssertion
     }
 
     /**
+     * Asserts that the view head has a meta tag with the given attributes array.
+     */
+    public function hasMeta(array $attributes): ViewAssertion {
+        $this->has('head');
+
+        $properties = implode('][', array_map(
+            function ($value, $key) {
+                return sprintf("%s='%s'", $key, $value);
+            },
+            $attributes,
+            array_keys($attributes)
+        ));
+
+        return $this->has("meta[{$properties}]");
+    }
+
+    /**
      * Returns the node of the current root element.
      *
      * @return DOMNode
