@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-final class AssertHasMetaValues extends TestCase
+final class AssertHasMeta extends TestCase
 {
     use InteractsWithViews;
 
