@@ -5,11 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+## 0.2.7
+- Added `hasMeta`
 
 ## 0.2.6
 ### Added
-- Add support for Laravel 8 ([#19](https://github.com/nunomaduro/laravel-mojito/pull/19))
-- Add support for PHP 8 ([#20](https://github.com/nunomaduro/laravel-mojito/pull/20))
+- Added support for Laravel 8 ([#19](https://github.com/nunomaduro/laravel-mojito/pull/19))
+- Added support for PHP 8 ([#20](https://github.com/nunomaduro/laravel-mojito/pull/20))
 
 ## 0.2.5
 ### Fixes
