@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 ## 0.2.7
+### Added
 - Added `hasMeta`
 
 ## 0.2.6
