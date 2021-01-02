@@ -136,6 +136,15 @@ Filters the view and returns only the last element matching the selector.
 $this->assertView('welcome')->last('.links a')->contains('GitHub');
 ```
 
+### `hasMeta`
+Asserts that the view has a given metatag in the head section.
+
+```php
+$response->assertView()->hasMeta(['property' => 'og:title']);
+$response->assertView()->hasMeta(['property' => 'og:title', 'content' => 'Laravel']);
+```
+
+
 ### Macroable
 
 Fell free to add your own macros to the `ViewAssertion::class`.
