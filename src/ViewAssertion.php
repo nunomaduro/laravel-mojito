@@ -104,26 +104,18 @@ final class ViewAssertion
     }
 
     /**
-     * Asserts that the view, at given selector, is empty.
+     * Asserts that the view, at given selector, has no content.
      */
     public function empty(): ViewAssertion
     {
+        $content = "";
+        foreach ($this->crawler->getIterator() as $node) {
+            $content .= trim($node->textContent);
+        }
+
         Assert::assertEmpty(
-            $this->crawler->html(),
-            "Failed asserting that the text `{$this->crawler->html()}` is empty."
-        );
-
-        return $this;
-    }
-
-    /**
-     * Asserts that the view, at given selector, is not empty.
-     */
-    public function notEmpty(): ViewAssertion
-    {
-        Assert::assertNotEmpty(
-            $this->crawler->html(),
-            "Failed asserting that the text `{$this->crawler->html()}` is not empty."
+            $content,
+            "Failed asserting that the text `{$content}` is empty."
         );
 
         return $this;

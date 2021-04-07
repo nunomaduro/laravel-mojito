@@ -17,12 +17,14 @@ final class AssertEmpty extends TestCase
     public function testEmpty(): void
     {
         $this->assertView('empty')->in('.empty-div')->empty();
+        $this->assertView('empty')->in('.empty-with-empty-nodes')->empty();
+        $this->assertView('empty')->in('.empty-with-space')->empty();
     }
 
     public function testNotEmpty(): void
     {
         $this->expectException(AssertionFailedError::class);
 
-        $this->assertView('button')->in('.btn')->empty();
+        $this->assertView('empty')->in('.not-empty')->empty();
     }
 }
