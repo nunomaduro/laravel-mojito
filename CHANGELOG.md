@@ -5,9 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+## 0.2.8
+### Added
+- Added `empty` assertion ([#22](https://github.com/nunomaduro/laravel-mojito/pull/22))
+
 ## 0.2.7
 ### Added
-- Added `hasMeta`
+- Added `hasMeta` assertion ([#21](https://github.com/nunomaduro/laravel-mojito/pull/21))
 
 ## 0.2.6
 ### Added
@@ -15,32 +19,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added support for PHP 8 ([#20](https://github.com/nunomaduro/laravel-mojito/pull/20))
 
 ## 0.2.5
-### Fixes
+### Fixed
 - Fixed bug when assertions were using string containing the percentage symbol ([#16](https://github.com/nunomaduro/laravel-mojito/pull/16))
 
 ### Deprecated
 - ViewAssertion::assert()
 
 ## 0.2.4
-### Fixes
+### Fixed
 - `in()` returns all matching items rather than just the first match ([#11](https://github.com/nunomaduro/laravel-mojito/pull/11))
 
 ## 0.2.3
-### Fixes
+### Fixed
 - Assertions with views in multiple nodes ([#8](https://github.com/nunomaduro/laravel-mojito/pull/8))
 
 ## 0.2.2
-### Adds
+### Added
 - Macroable trait to `ViewAssertion`
 
 ## 0.2.1
-### Fixes
+### Fixed
 - `assertView` macro on Laravel 6
 
 ## 0.2.0
-### Adds
+### Added
 - View testing from http tests
 
 ## 0.1.1
-### Adds
+### Added
 - First version
