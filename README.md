@@ -67,6 +67,16 @@ $this->assertView('welcome')->in('title')->contains('Laravel');
 $this->assertView('welcome')->in('.content')->contains('Nova');
 ```
 
+### `empty`
+
+Asserts that the view has no text content.
+
+_Note: empty html nodes are not considered in this check._
+
+```php
+$this->assertView('empty')->in('.empty-div')->empty();
+```
+
 ### `first`
 
 Filters the view and returns only the first element matching the selector.

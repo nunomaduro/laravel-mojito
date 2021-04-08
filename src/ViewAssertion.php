@@ -95,9 +95,27 @@ final class ViewAssertion
     public function contains(string $text): ViewAssertion
     {
         Assert::assertStringContainsString(
-            (string) $text,
+            (string)$text,
             $this->html,
             "Failed asserting that the text `{$text}` exists within `{$this->html}`."
+        );
+
+        return $this;
+    }
+
+    /**
+     * Asserts that the view, at given selector, has no content.
+     */
+    public function empty(): ViewAssertion
+    {
+        $content = "";
+        foreach ($this->crawler->getIterator() as $node) {
+            $content .= trim($node->textContent);
+        }
+
+        Assert::assertEmpty(
+            $content,
+            "Failed asserting that the text `{$content}` is empty."
         );
 
         return $this;
