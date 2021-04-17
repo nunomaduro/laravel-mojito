@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+- Added `not` modifier
+
 ## 0.2.8
 ### Added
 - Added `empty` assertion ([#22](https://github.com/nunomaduro/laravel-mojito/pull/22))
