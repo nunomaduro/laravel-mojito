@@ -20,7 +20,7 @@ final class AssertHasClass extends TestCase
         $this->assertView('welcome')->in('.content')->at('div > div', 0)->hasClass('title');
     }
 
-    public function testDoNotHasClass(): void
+    public function testHasClassFailure(): void
     {
         $html = file_get_contents(__DIR__.'/fixtures/button.html');
         $this->expectException(AssertionFailedError::class);
@@ -29,5 +29,21 @@ final class AssertHasClass extends TestCase
         );
 
         $this->assertView('button')->hasClass('btn-danger');
+    }
+
+    public function testDoesNotHaveClass(): void
+    {
+        $this->assertView('button')->not()->hasClass('btn-danger');
+    }
+
+    public function testDoesNotHaveClassFailure(): void
+    {
+        $html = file_get_contents(__DIR__.'/fixtures/button.html');
+        $this->expectException(AssertionFailedError::class);
+        $this->expectExceptionMessage(
+            "Failed asserting that `{$html}` does not have class `btn`"
+        );
+
+        $this->assertView('button')->not()->hasClass('btn');
     }
 }

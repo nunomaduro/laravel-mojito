@@ -21,10 +21,29 @@ final class AssertEmpty extends TestCase
         $this->assertView('empty')->in('.empty-with-space')->empty();
     }
 
-    public function testNotEmpty(): void
+    public function testEmptyFailure(): void
     {
         $this->expectException(AssertionFailedError::class);
+        $this->expectExceptionMessage(
+            "Failed asserting that the text `Hello` is empty"
+        );
 
-        $this->assertView('empty')->in('.not-empty')->empty();
+        $this->assertView('empty')->in('.not-empty-text')->empty();
+    }
+
+    public function testNotEmpty(): void
+    {
+        $this->assertView('button')->in('.btn')->not()->empty();
+    }
+
+    public function testNotEmptyFailure(): void
+    {
+        $html = '<div class="empty-div"></div>';
+        $this->expectException(AssertionFailedError::class);
+        $this->expectExceptionMessage(
+            "Failed asserting that `{$html}` is not empty"
+        );
+
+        $this->assertView('empty')->in('.empty-div')->not()->empty();
     }
 }

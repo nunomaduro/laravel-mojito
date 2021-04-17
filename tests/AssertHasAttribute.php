@@ -21,7 +21,7 @@ final class AssertHasAttribute extends TestCase
         $this->assertView('welcome')->in('head')->first('meta')->hasAttribute('charset', 'utf-8');
     }
 
-    public function testDoNotHasAttribute(): void
+    public function testHasAttributeFailure(): void
     {
         $html = file_get_contents(__DIR__.'/fixtures/button.html');
         $this->expectException(AssertionFailedError::class);
@@ -30,5 +30,23 @@ final class AssertHasAttribute extends TestCase
         );
 
         $this->assertView('button')->hasAttribute('prop', 'missing-value');
+    }
+
+    public function testDoesNotHaveAttribute(): void
+    {
+        $this->assertView('button')->not()->hasAttribute('prop', 'missing-value');
+        $this->assertView('welcome')->not()->hasAttribute('lang', 'it');
+        $this->assertView('welcome')->in('head')->first('meta')->not()->hasAttribute('charset', 'utf-16');
+    }
+
+    public function testDoesNotHaveAttributeFailure(): void
+    {
+        $html = file_get_contents(__DIR__.'/fixtures/button.html');
+        $this->expectException(AssertionFailedError::class);
+        $this->expectExceptionMessage(
+            "Failed asserting that `{$html}` does not have attribute `prop = value`"
+        );
+
+        $this->assertView('button')->not()->hasAttribute('prop', 'value');
     }
 }
