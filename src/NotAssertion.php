@@ -13,11 +13,17 @@ final class NotAssertion
      */
     protected $originalAssertion;
 
+    /**
+     * Create a new inverted view assertion instance.
+     */
     public function __construct(ViewAssertion $originalAssertion)
     {
         $this->originalAssertion = $originalAssertion;
     }
 
+    /**
+     * Return the original assertion when not is called twice
+     */
     public function not() : ViewAssertion
     {
         return $this->originalAssertion;
@@ -55,8 +61,6 @@ final class NotAssertion
 
     /**
      * @throws \UnexpectedValueException
-     *
-     * @return ViewAssertion
      */
     public function last(string $selector): ViewAssertion
     {
@@ -67,12 +71,9 @@ final class NotAssertion
 
     /**
      * Reverse the next assertion
-     * @param string $name
-     * @param mixed[] $arguments
-     * @return ViewAssertion
      * @throws ExpectationFailedException
      */
-    public function __call($name, $arguments)
+    public function __call(string $name, array $arguments): ViewAssertion
     {
         try {
             $this->originalAssertion->$name(...$arguments);
@@ -80,17 +81,14 @@ final class NotAssertion
             return $this->originalAssertion;
         }
 
-
         throw new ExpectationFailedException($this->getErrorMessage($name, $arguments));
     }
 
     /**
      * Create an error message for the failed assertion, trying to make sense
      * from the original name and arguments.
-     * @param string $name
-     * @param mixed[] $arguments
      */
-    private function getErrorMessage($name, $arguments): string
+    private function getErrorMessage(string $name, array $arguments): string
     {
         $name = collect(preg_split('/(?=[A-Z])/', $name))
             ->map(function ($word, $key) {
@@ -110,6 +108,13 @@ final class NotAssertion
                 . '` is not '.$name;
         }
 
+        $arguments = array_map(
+            function ($item) {
+                return is_array($item) ? json_encode($item) : $item;
+            },
+            (array) $arguments
+        );
+
         if (count($arguments) === 2) {
             return 'Failed asserting that `'
                 . $this->originalAssertion->getHtml()
@@ -120,11 +125,6 @@ final class NotAssertion
         return 'Failed asserting that `'
             . $this->originalAssertion->getHtml()
             . '` does not ' . $name
-            . ' `' . implode(', ', array_map(
-                function ($item) {
-                    return is_array($item) ? json_encode($item) : $item;
-                },
-                (array) $arguments
-            )) . '`';
+            . ' `' . implode(', ', $arguments) . '`';
     }
 }
