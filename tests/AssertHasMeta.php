@@ -22,11 +22,11 @@ final class AssertHasMeta extends TestCase
         ]);
 
         $this->assertView('welcome')->hasMeta([
-            'charset'   =>  'utf-8'
+            'charset' => 'utf-8'
         ]);
     }
 
-    public function testDoesNotHaveMeta(): void
+    public function testHasMetaFailure(): void
     {
         $html = file_get_contents(__DIR__.'/fixtures/welcome.html');
         $this->expectException(AssertionFailedError::class);
@@ -36,6 +36,27 @@ final class AssertHasMeta extends TestCase
 
         $this->assertView('welcome')->hasMeta([
             'property'   =>  'og:title'
+        ]);
+    }
+
+    public function testDoesNotHaveMeta(): void
+    {
+        $this->assertView('welcome')->not()->hasMeta([
+            'property' => 'og:title'
+        ]);
+    }
+
+
+    public function testDoesNotHaveMetaFailure(): void
+    {
+        $html = file_get_contents(__DIR__.'/fixtures/welcome.html');
+        $this->expectException(AssertionFailedError::class);
+        $this->expectExceptionMessage(
+            "Failed asserting that `{$html}` does not have meta `{\"charset\":\"utf-8\"}`"
+        );
+
+        $this->assertView('welcome')->not()->hasMeta([
+            'charset' => 'utf-8'
         ]);
     }
 }

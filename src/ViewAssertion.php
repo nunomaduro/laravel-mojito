@@ -44,6 +44,22 @@ final class ViewAssertion
     }
 
     /**
+     * Get the html from the current view fragment
+     */
+    public function getHtml(): string
+    {
+        return $this->html;
+    }
+
+    /**
+     * Creates a new inverse assertion for the next selector.
+     */
+    public function not(): NotAssertion
+    {
+        return new NotAssertion($this);
+    }
+
+    /**
      * Creates a new view assertion with the given selector.
      */
     public function in(string $selector): ViewAssertion

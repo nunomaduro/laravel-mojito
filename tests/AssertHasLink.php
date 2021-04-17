@@ -22,7 +22,7 @@ final class AssertHasLink extends TestCase
         $this->assertView('welcome')->in('.links')->last('a')->hasLink('https://github.com/laravel/laravel');
     }
 
-    public function testDoNotLink(): void
+    public function testHasLinkFailure(): void
     {
         $html = file_get_contents(__DIR__.'/fixtures/button.html');
         $this->expectException(AssertionFailedError::class);
@@ -31,5 +31,21 @@ final class AssertHasLink extends TestCase
         );
 
         $this->assertView('button')->hasLink('https://link-that-is-not-there.com');
+    }
+
+    public function testDoesNotHaveLink(): void
+    {
+        $this->assertView('button')->not()->hasLink('https://link-that-is-not-there.com');
+    }
+
+    public function testDoesNotHaveLinkFailure(): void
+    {
+        $html = file_get_contents(__DIR__.'/fixtures/button.html');
+        $this->expectException(AssertionFailedError::class);
+        $this->expectExceptionMessage(
+            "Failed asserting that `{$html}` does not have link `https://link.com`"
+        );
+
+        $this->assertView('button')->not()->hasLink('https://link.com');
     }
 }

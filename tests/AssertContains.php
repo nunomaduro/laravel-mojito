@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Tests;
 
 use NunoMaduro\LaravelMojito\InteractsWithViews;
@@ -20,7 +19,7 @@ final class AssertContains extends TestCase
         $this->assertView('welcome')->contains('<title>Laravel</title>');
     }
 
-    public function testDoesNotContain(): void
+    public function testContainsFailure(): void
     {
         $html = file_get_contents(__DIR__.'/fixtures/button.html');
         $this->expectException(AssertionFailedError::class);
@@ -45,5 +44,20 @@ final class AssertContains extends TestCase
             ->contains('AFTER')
             ->contains('WIDGETBEF')
             ->contains('WIDGETAFT');
+    }
+
+    public function testDoesNotContain(): void
+    {
+        $this->assertView('welcome')->not()->contains('<title>Mojito</title>');
+    }
+
+    public function testDoesNotFailure(): void
+    {
+        $html = file_get_contents(__DIR__.'/fixtures/button.html');
+        $this->expectException(AssertionFailedError::class);
+        $this->expectExceptionMessage(
+            "Failed asserting that `{$html}` does not contain `Click me`"
+        );
+        $this->assertView('button')->not()->contains('Click me');
     }
 }
