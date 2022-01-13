@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+
+## 0.2.9
+### Added
+- Adds L9 support
+
 ## 0.2.8
 ### Added
 - Added `empty` assertion ([#22](https://github.com/nunomaduro/laravel-mojito/pull/22))
