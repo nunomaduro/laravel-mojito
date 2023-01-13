@@ -157,7 +157,7 @@ $response->assertView()->hasMeta(['property' => 'og:title', 'content' => 'Larave
 
 ### Macroable
 
-Fell free to add your own macros to the `ViewAssertion::class`.
+Feel free to add your own macros to the `ViewAssertion::class`.
 
 ```php
 use NunoMaduro\LaravelMojito\ViewAssertion;
