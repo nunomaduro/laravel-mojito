@@ -1,0 +1,6 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method NunoMaduro\\\\LaravelMojito\\\\ViewAssertion\\:\\:assert\\(\\) is unused\\.$#"
+			count: 1
+			path: src/ViewAssertion.php

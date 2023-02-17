@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Tests;
 
 use NunoMaduro\LaravelMojito\InteractsWithViews;
@@ -17,12 +16,12 @@ final class AssertHasMeta extends TestCase
     public function testHasMeta(): void
     {
         $this->assertView('welcome')->hasMeta([
-            'name'   =>  'viewport',
-            'content'   =>  'width=device-width, initial-scale=1'
+            'name' => 'viewport',
+            'content' => 'width=device-width, initial-scale=1',
         ]);
 
         $this->assertView('welcome')->hasMeta([
-            'charset'   =>  'utf-8'
+            'charset' => 'utf-8',
         ]);
     }
 
@@ -35,7 +34,7 @@ final class AssertHasMeta extends TestCase
         );
 
         $this->assertView('welcome')->hasMeta([
-            'property'   =>  'og:title'
+            'property' => 'og:title',
         ]);
     }
 }
