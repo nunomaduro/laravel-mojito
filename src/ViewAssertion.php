@@ -79,8 +79,6 @@ final class ViewAssertion
 
     /**
      * Creates a new view assertion with the given selector at the last position.
-     *
-     * @return ViewAssertion
      */
     public function last(string $selector): ViewAssertion
     {
@@ -95,7 +93,7 @@ final class ViewAssertion
     public function contains(string $text): ViewAssertion
     {
         Assert::assertStringContainsString(
-            (string)$text,
+            (string) $text,
             $this->html,
             "Failed asserting that the text `{$text}` exists within `{$this->html}`."
         );
@@ -108,7 +106,7 @@ final class ViewAssertion
      */
     public function empty(): ViewAssertion
     {
-        $content = "";
+        $content = '';
         foreach ($this->crawler->getIterator() as $node) {
             $content .= trim($node->textContent);
         }
@@ -185,8 +183,6 @@ final class ViewAssertion
 
     /**
      * Returns the node of the current root element.
-     *
-     * @return DOMNode
      */
     private function getRootElement(): DOMNode
     {
@@ -210,7 +206,7 @@ final class ViewAssertion
         try {
             $assertion();
         } catch (AssertionFailedError $e) {
-            throw new AssertionFailedError(sprintf($message, sprintf("`%s`", $this->html)));
+            throw new AssertionFailedError(sprintf($message, sprintf('`%s`', $this->html)));
         }
     }
 }
