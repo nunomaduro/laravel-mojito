@@ -15,7 +15,7 @@ Mojito was created by, and is maintained by [Nuno Maduro](https://github.com/nun
 
 ## Installation & Usage
 
-> **Requires [PHP 7.2.5+](https://php.net/releases/)**
+> **Requires [PHP 8.0+](https://php.net/releases/)**
 
 Require Mojito using [Composer](https://getcomposer.org):
 
