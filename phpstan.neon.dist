@@ -1,3 +1,6 @@
+includes:
+  - phpstan-baseline.neon
+
 parameters:
     level: max
     paths:
@@ -8,5 +11,5 @@ parameters:
         - '#Call to an undefined method Tests\\IsMacroable::in\(\).#'
         - '#Call to an undefined method NunoMaduro\\LaravelMojito\\ViewAssertion::hasCharset\(\).#'
     checkMissingIterableValueType: false
-    excludes_analyse:
-        - "src/MojitoServiceProvider.php"
+    excludePaths:
+        - src/MojitoServiceProvider.php
