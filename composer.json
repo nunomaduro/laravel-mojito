@@ -24,9 +24,10 @@
         "illuminate/support": "^9.0|^10.0",
         "illuminate/view": "^9.0|^10.0",
         "laravel/pint": "^1.5",
+        "pestphp/pest": "^1.22",
+        "pestphp/pest-plugin-parallel": "^1.2",
         "phpstan/phpstan": "^1.9.17",
-        "phpstan/phpstan-strict-rules": "^1.4.5",
-        "phpunit/phpunit": "^9.0"
+        "phpstan/phpstan-strict-rules": "^1.4.5"
     },
     "autoload-dev": {
         "psr-4": {
@@ -45,13 +46,16 @@
     },
     "config": {
         "sort-packages": true,
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "scripts": {
         "lint": "pint",
         "test:lint": "pint --test",
         "test:types": "phpstan analyse --ansi",
-        "test:unit": "phpunit --colors=always",
+        "test:unit": "pest -p --colors=always",
         "test": [
             "@test:lint",
             "@test:types",

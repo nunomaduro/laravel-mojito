@@ -12,17 +12,15 @@
          failOnWarning="true"
          processIsolation="false"
          stopOnError="false"
-         stopOnFailure="false"
-         verbose="true"
->
+         stopOnFailure="false">
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+    </coverage>
     <testsuites>
         <testsuite name="Test Suite">
             <directory suffix=".php">./tests</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./src</directory>
-        </whitelist>
-    </filter>
 </phpunit>
