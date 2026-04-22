@@ -4,10 +4,10 @@
 
 <p align="center">
   <a href="https://travis-ci.org/nunomaduro/laravel-mojito"><img src="https://img.shields.io/travis/nunomaduro/laravel-mojito/master.svg" alt="Build Status"></img></a>
-  <a href="https://youtube.com/@nunomaduro?sub_confirmation=1"><img alt="YouTube Channel Subscribers" src="https://img.shields.io/youtube/channel/subscribers/UCO_hYZF2gb_CyG5sA7ArlGg?style=flat&label=youtube&color=brightgreen"></a>
   <a href="https://packagist.org/packages/nunomaduro/laravel-mojito"><img src="https://poser.pugx.org/nunomaduro/laravel-mojito/d/total.svg" alt="Total Downloads"></a>
   <a href="https://packagist.org/packages/nunomaduro/laravel-mojito"><img src="https://poser.pugx.org/nunomaduro/laravel-mojito/v/stable.svg" alt="Latest Version"></a>
   <a href="https://packagist.org/packages/nunomaduro/laravel-mojito"><img src="https://poser.pugx.org/nunomaduro/laravel-mojito/license.svg" alt="License"></a>
+  <a href="https://youtube.com/@nunomaduro?sub_confirmation=1"><img alt="YouTube Channel Subscribers" src="https://img.shields.io/youtube/channel/subscribers/UCO_hYZF2gb_CyG5sA7ArlGg?style=flat&label=youtube&color=brightgreen"></a>
 </p>
 
 ## About Mojito
